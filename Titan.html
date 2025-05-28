@@ -106,11 +106,26 @@
       let headerClosure = template`<td class="${0} head">${1}</td>`
       let dataClosure = template`<td class="${0} tableCell">${1}</td>`
 
-      function createTd(data, colNum){
+      function createTd(data, colNum, type, isResource){
         let td = document.createElement("td");
-        td.classList.add("C" + colNum.toString().padStart(2,'0'));
-        td.innerText = data;
+        td.classList.add("c" + colNum.toString().padStart(2,'0'));
+        td.classList.add("tableCell");
 
+        if (type === "numeric"){
+          td.dataset.type = "numeric";
+          td.dataset.value = data;
+          td.classList.add("data");
+          if(isResource){
+            td.dataset.target = "resource";
+          }
+        }else if (type === "checkbox"){
+          let checkBox = document.createElement("input");
+          checkBox.setAttribute("type", "checkbox");
+          td.classList.add("data");
+          td.appendChild(checkBox);
+        }else {
+          td.innerText = data;
+        }
         return td;
       }
 
@@ -121,7 +136,7 @@
           let baseElement = document.createElement("tr");
           for (let i = 0; i < obj.Header.length; i++){
             let colElement = document.createElement("td");
-            colElement.classList.add("C"+ (i+1).toString().padStart(2,'0'));
+            colElement.classList.add("c"+ (i+1).toString().padStart(2,'0'));
             colElement.classList.add("head");
             colElement.innerText = obj.Header[i]
 
@@ -130,17 +145,20 @@
           parentElement.appendChild(baseElement);
         }else if(type === "data"){
           for (let i = 0; i< obj.Data.length; i++){
-            let colElement = document.createElement("tr");
-            colelement.appendChild(createTd(obj.Data[i].Level,1));
-            colelement.appendChild(createTd(obj.Data[i].resource,2));
-            colelement.appendChild(createTd(obj.Data[i].power,3));
-            colelement.appendChild(createTd(obj.Data[i].output,4));
-            colelement.appendChild(createTd(obj.Data[i].no1,5));
-            colelement.appendChild(createTd(obj.Data[i].no2,6));
-            colelement.appendChild(createTd(obj.Data[i].no3,7));
-            colelement.appendChild(createTd(obj.Data[i].no4,8));
-            colelement.appendChild(createTd(obj.Data[i].week,9));
-            parentElement.appendChild(baseElement);
+            
+            let rowElement = document.createElement("tr");
+
+            rowElement.appendChild(createTd(obj.Data[i].Level,1));
+            rowElement.appendChild(createTd(obj.Data[i].resource,2,"numeric",true));
+            rowElement.appendChild(createTd(obj.Data[i].power,3,"numeric",false));
+            rowElement.appendChild(createTd(obj.Data[i].output,4,"numeric",false));
+            rowElement.appendChild(createTd(obj.Data[i].no1,5,"checkbox"));
+            rowElement.appendChild(createTd(obj.Data[i].no2,6,"checkbox"));
+            rowElement.appendChild(createTd(obj.Data[i].no3,7,"checkbox"));
+            rowElement.appendChild(createTd(obj.Data[i].no4,8,"checkbox"));
+            rowElement.appendChild(createTd(obj.Data[i].week,9,"checkbox"));
+
+            parentElement.appendChild(rowElement);
           }
         }
 
@@ -155,6 +173,9 @@
         const data = await response.json();
 
         CreateTableElement(data, "header");
+        CreateTableElement(data, "data");
+
+        changeUnit(0,0);
       }
 
 
@@ -177,7 +198,7 @@
           if(element.dataset.type === 'numeric' && element.classList.contains("unitChange")){
             let value = element.dataset.value.replaceAll(',','')
     
-            if (element.dataset.target === 'resources'){
+            if (element.dataset.target === 'resource'){
               value = Math.ceil(value * valuedownCounter)
             }
     
@@ -218,7 +239,7 @@
       document.addEventListener('DOMContentLoaded',function(){
         loadJson();
         
-        changeUnit(0,0);
+        
       });
     
       // document.getElementById('applyButton').addEventListener('click',function(){
