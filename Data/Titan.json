@@ -1,0 +1,37 @@
+{
+    "Header":[
+        "レベル",
+        "必要な石炭",
+        "出力",
+        "チタン出力/時間",
+        "#1",
+        "#2",
+        "#3",
+        "#4",
+        "週間"
+    ],
+    "Data":[
+        {
+            "Level":1,
+            "Coals":700,
+            "Power":100,
+            "output":720,
+            "#1":false,
+            "#2":false,
+            "#3":false,
+            "#4":false,
+            "week":false
+        },
+        {
+            "Level":1,
+            "Coals":1400,
+            "Power":200,
+            "output":1440,
+            "#1":false,
+            "#2":false,
+            "#3":false,
+            "#4":false,
+            "week":false
+        }
+    ]
+}
