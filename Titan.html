@@ -1,205 +1,235 @@
 <html>
-    <body>
-        <span id="Input">
+  <body>
+    <span id="Input">
 
-        </span>
-        <span id="List">
-        <table cellspacing="0" style="border-collapse: collapse;">
-            <tbody>
-              <tr>
-                <td class="c01 head">レベル</td>
-                <td class="c02 head">必要な石炭</td>
-                <td class="c03 head">出力</td>
-                <td class="c04 head">チタン出力/時間</td>
-                <td class="c05 head"></td>
-                <td class="c06 head">#1</td>
-                <td class="c07 head">#2</td>
-                <td class="c08 head">#3</td>
-                <td class="c09 head">#4</td>
-                <td class="c10 head">週間</td>
-                <td class="c11 head"></td>
-              </tr>
-              <tr>
-                <td class="c01 tableCell">1</td>
-                <td class="c02 tableCell data" data-type="numeric" data-target="" data-value="700"></td>
-                <td class="c03 tableCell data" data-type="numeric" data-target="" data-value="100"></td>
-                <td class="c04 tableCell data" data-type="numeric" data-target="" data-value="720"></td>
-                <td class="c05 tableCell">605.5</td>
-                <td class="c06 tableCell data"><input class="no01" type="checkbox" checked></td>
-                <td class="c07 tableCell data"><input class="no02" type="checkbox" checked></td>
-                <td class="c08 tableCell data"><input class="no03" type="checkbox" checked></td>
-                <td class="c09 tableCell data"><input class="no04" type="checkbox" checked></td>
-                <td class="c10 tableCell data"><input class="no05" type="checkbox" checked></td>
-                <td class="c11 tableCell"></td>
-              </tr>
-              <tr>
-                <td class="c01 tableCell">2</td>
-                <td class="c02 tableCell data" data-type="numeric" data-target="" data-value="1,400"></td>
-                <td class="c03 tableCell data" data-type="numeric" data-target="" data-value="200"></td>
-                <td class="c04 tableCell data" data-type="numeric" data-target="" data-value="1,440"></td>
-                <td class="c05 tableCell">1211</td>
-                <td class="c06 tableCell data"><input class="no01" type="checkbox" checked></td>
-                <td class="c07 tableCell data"><input class="no02" type="checkbox" checked></td>
-                <td class="c08 tableCell data"><input class="no03" type="checkbox" checked></td>
-                <td class="c09 tableCell data"><input class="no04" type="checkbox" checked></td>
-                <td class="c10 tableCell data"><input class="no05" type="checkbox" checked></td>
-                <td class="c11 tableCell"></td>
-              </tr>
-            </tbody>
-        </table>
-        </span>
-        <style>
-            span.unit{
-              display:inline-block;
-              min-width: 10px;
-              margin-left: 5px;
-            }
+    </span>
+    <span id="List">
+      <table id="titanTable" cellspacing="0" style="border-collapse: collapse;">
+        <tbody id="titanTableBody">
+        </tbody>
+      </table>
+    </span>
+    <style>
+        span.unit{
+          display:inline-block;
+          min-width: 10px;
+          margin-left: 5px;
+        }
+      
+        tr{
+          .c1{
+            background: rgb(251, 226, 213);
+            width: 35px;
+            font-weight: 700;
+            padding-left: 3px;
+            padding-right:3px;
+          }
+      
+          .c2{
+            width: 62.25px;
           
-            tr{
-              .c1{
-                background: rgb(251, 226, 213);
-                width: 35px;
-                font-weight: 700;
-                padding-left: 3px;
-                padding-right:3px;
-              }
-          
-              .c2{
-                width: 62.25px;
+          }
+      
+          .c3{
+            width: 62.25px;
+          }
+      
+          .c4{
+            width: 77.25px;
+          }
+    
+          .c5{
+            width: 62.25px;
+          }
+    
+          .c6{
+            width: 62.25px;
+          }
+      
+          .head{
+            background: rgb(193, 240, 200);
+            border-top: 1px solid rgb(0, 0, 0);
+            border-left: 1px solid rgb(0, 0, 0);
+            border-right: 1px solid rgb(0, 0, 0);
+            border-bottom: 3px double rgb(0, 0, 0);
+            height: 22px;
+            font-size: 16px;
+            font-weight:700;
+            text-align: center;
+          }
+      
+          .tableCell{
+            font-size: 11px;
+            height: 18.75px;
+            border: 1px solid rgb(0, 0, 0);
+            text-align: right;
+            padding-left: 1px;
+            padding-right: 1px;
+            padding-top: 1px;
+          }
+      
+          .data{
+            color: #313131;
+            vertical-align: bottom;
+      
+            &[data-type="numeric"]{
+              text-align: right;
               
+              > span.data::before{
+                content: attr(data-display);
               }
-          
-              .c3{
-                width: 62.25px;
-              }
-          
-              .c4{
-                width: 77.25px;
-              }
-        
-              .c5{
-                width: 62.25px;
-              }
-        
-              .c6{
-                width: 62.25px;
-              }
-          
-              .head{
-                background: rgb(193, 240, 200);
-                border-top: 1px solid rgb(0, 0, 0);
-                border-left: 1px solid rgb(0, 0, 0);
-                border-right: 1px solid rgb(0, 0, 0);
-                border-bottom: 3px double rgb(0, 0, 0);
-                height: 22px;
-                font-size: 12px;
-                font-weight:700;
-                text-align: center;
-              }
-          
-              .tableCell{
-                font-size: 11px;
-                height: 18.75px;
-                border: 1px solid rgb(0, 0, 0);
-                text-align: right;
-                padding-left: 1px;
-                padding-right: 1px;
-                padding-top: 1px;
-              }
-          
-              .data{
-                color: #313131;
-                vertical-align: bottom;
-          
-                &[data-type="numeric"]{
-                  text-align: right;
-                  
-                  > span.data::before{
-                    content: attr(data-display);
-                  }
-          
-                  > span.unit::before{
-                    content: attr(data-display);
-                  }
-                }
-          
+      
+              > span.unit::before{
+                content: attr(data-display);
               }
             }
-          
-          </style>
-          
-          <script type='text/javascript'>
-            <!--
-            function createSpan(className,value){
-              let newElement = document.createElement("span")
-              newElement.setAttribute("class",className)
-              newElement.dataset.display= value
-          
-              return newElement
-            }
-          
-            function changeUnit(speedup,valuedown){
-              
-              let dataElement = document.querySelectorAll("td.data")
-              let speedupCounter = 1 + speedup / 100
-              let valuedownCounter = 1 - Math.abs(valuedown) / 100
-          
-              for(let i=0;i < dataElement.length; i++){
-                let element = dataElement[i]
-                if(element.dataset.type === 'numeric' && element.classList.contains("unitChange")){
-                  let value = element.dataset.value.replaceAll(',','')
-          
-                  if (element.dataset.target === 'resources'){
-                    value = Math.ceil(value * valuedownCounter)
-                  }
-          
-                  let dataSpan = null
-                  let unitSpan = null
-                  if (value >= 1000000000){
-                    dataSpan = createSpan("data",(value/1000000000).toFixed(1))
-                    unitSpan = createSpan("unit","G")
-                  } 
-                  else if (value >= 1000000) {
-                    dataSpan = createSpan("data",(value/1000000).toFixed(1))
-                    unitSpan = createSpan("unit","M")
-                  }
-                  else if (value >= 1000) {
-                    dataSpan = createSpan("data",(value/1000).toFixed(1))
-                    unitSpan = createSpan("unit","K")
-                  }
-                  else {
-                    dataSpan = createSpan("data",value)
-                    unitSpan = createSpan("unit"," ")
-                  }
-          
-                  element.appendChild(dataSpan)
-                  element.appendChild(unitSpan)
-                }else if(element.dataset.type === 'numeric'){
-                  let value = element.dataset.value.replaceAll(',','')
-          
-                  if (element.dataset.target === 'resources'){
-                    value = Math.ceil(value * valuedownCounter)
-                  }
+      
+          }
+        }
+      
+    </style>
+        
+    <script type='text/javascript'>
+      <!--
+      function template(strings, ...keys) {
+        return (...values) => {
+          const dict = values[values.length - 1] || {};
+          const result = [strings[0]];
+          keys.forEach((key, i) => {
+            const value = Number.isInteger(key) ? values[key] : dict[key];
+            result.push(value, strings[i + 1]);
+          });
+          return result.join("");
+        };
+      }
 
-                  let dataSpan = createSpan("data",value)
-                  element.appendChild(dataSpan)
-                }
-              }
+      let headerClosure = template`<td class="${0} head">${1}</td>`
+      let dataClosure = template`<td class="${0} tableCell">${1}</td>`
+
+      function createTd(data, colNum){
+        let td = document.createElement("td");
+        td.classList.add("C" + colNum.toString().padStart(2,'0'));
+        td.innerText = data;
+
+        return td;
+      }
+
+      function CreateTableElement(obj,type){
+        let parentElement = document.getElementById("titanTableBody")
+        
+        if (type === "header"){
+          let baseElement = document.createElement("tr");
+          for (let i = 0; i < obj.Header.length; i++){
+            let colElement = document.createElement("td");
+            colElement.classList.add("C"+ (i+1).toString().padStart(2,'0'));
+            colElement.classList.add("head");
+            colElement.innerText = obj.Header[i]
+
+            baseElement.appendChild(colElement);
+          }
+          parentElement.appendChild(baseElement);
+        }else if(type === "data"){
+          for (let i = 0; i< obj.Data.length; i++){
+            let colElement = document.createElement("tr");
+            colelement.appendChild(createTd(obj.Data[i].Level,1));
+            colelement.appendChild(createTd(obj.Data[i].resource,2));
+            colelement.appendChild(createTd(obj.Data[i].power,3));
+            colelement.appendChild(createTd(obj.Data[i].output,4));
+            colelement.appendChild(createTd(obj.Data[i].#1,5));
+            colelement.appendChild(createTd(obj.Data[i].#2,6));
+            colelement.appendChild(createTd(obj.Data[i].#3,7));
+            colelement.appendChild(createTd(obj.Data[i].#4,8));
+            colelement.appendChild(createTd(obj.Data[i].week,9));
+            parentElement.appendChild(baseElement);
+          }
+        }
+
+        
+      }
+
+      async function loadJson(){
+        const requestURL = "https://raw.githubusercontent.com/ksmage/LastWar/refs/heads/main/Data/Titan.json";
+        const request = new Request(requestURL);
+
+        const response = await fetch(request);
+        const data = await response.json();
+
+        CreateTableElement(data, "header");
+      }
+
+
+      function createSpan(className,value){
+        let newElement = document.createElement("span")
+        newElement.setAttribute("class",className)
+        newElement.dataset.display= value
+    
+        return newElement
+      }
+    
+      function changeUnit(speedup,valuedown){
+        
+        let dataElement = document.querySelectorAll("td.data")
+        let speedupCounter = 1 + speedup / 100
+        let valuedownCounter = 1 - Math.abs(valuedown) / 100
+    
+        for(let i=0;i < dataElement.length; i++){
+          let element = dataElement[i]
+          if(element.dataset.type === 'numeric' && element.classList.contains("unitChange")){
+            let value = element.dataset.value.replaceAll(',','')
+    
+            if (element.dataset.target === 'resources'){
+              value = Math.ceil(value * valuedownCounter)
             }
-          
-            document.addEventListener('DOMContentLoaded',function(){
-              changeUnit(0,0);
-            });
-          
-            // document.getElementById('applyButton').addEventListener('click',function(){
-            //   //let speedup = document.getElementById('speedup').value
-            //   //let valueDown = document.getElementById('valuedown').value
-          
-            //   let sppedUp = 0
-            //   let valueDown = 0
-            //   changeUnit(speedUp, valueDown)
-            // })
-            -->
-          </script>
-    </body>
+    
+            let dataSpan = null
+            let unitSpan = null
+            if (value >= 1000000000){
+              dataSpan = createSpan("data",(value/1000000000).toFixed(1))
+              unitSpan = createSpan("unit","G")
+            } 
+            else if (value >= 1000000) {
+              dataSpan = createSpan("data",(value/1000000).toFixed(1))
+              unitSpan = createSpan("unit","M")
+            }
+            else if (value >= 1000) {
+              dataSpan = createSpan("data",(value/1000).toFixed(1))
+              unitSpan = createSpan("unit","K")
+            }
+            else {
+              dataSpan = createSpan("data",value)
+              unitSpan = createSpan("unit"," ")
+            }
+    
+            element.appendChild(dataSpan)
+            element.appendChild(unitSpan)
+          }else if(element.dataset.type === 'numeric'){
+            let value = element.dataset.value.replaceAll(',','')
+    
+            if (element.dataset.target === 'resources'){
+              value = Math.ceil(value * valuedownCounter)
+            }
+
+            let dataSpan = createSpan("data",value)
+            element.appendChild(dataSpan)
+          }
+        }
+      }
+    
+      document.addEventListener('DOMContentLoaded',function(){
+        loadJson();
+        
+        changeUnit(0,0);
+      });
+    
+      // document.getElementById('applyButton').addEventListener('click',function(){
+      //   //let speedup = document.getElementById('speedup').value
+      //   //let valueDown = document.getElementById('valuedown').value
+    
+      //   let sppedUp = 0
+      //   let valueDown = 0
+      //   changeUnit(speedUp, valueDown)
+      // })
+      -->
+    </script>
+  </body>
 </html>

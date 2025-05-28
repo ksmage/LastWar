@@ -13,8 +13,8 @@
     "Data":[
         {
             "Level":1,
-            "Coals":700,
-            "Power":100,
+            "resource":700,
+            "power":100,
             "output":720,
             "#1":false,
             "#2":false,
@@ -24,8 +24,8 @@
         },
         {
             "Level":1,
-            "Coals":1400,
-            "Power":200,
+            "resource":1400,
+            "power":200,
             "output":1440,
             "#1":false,
             "#2":false,
