@@ -16,10 +16,10 @@
             "resource":700,
             "power":100,
             "output":720,
-            "#1":false,
-            "#2":false,
-            "#3":false,
-            "#4":false,
+            "no1":false,
+            "no2":false,
+            "no3":false,
+            "no4":false,
             "week":false
         },
         {
@@ -27,10 +27,10 @@
             "resource":1400,
             "power":200,
             "output":1440,
-            "#1":false,
-            "#2":false,
-            "#3":false,
-            "#4":false,
+            "no1":false,
+            "no2":false,
+            "no3":false,
+            "no4":false,
             "week":false
         }
     ]
