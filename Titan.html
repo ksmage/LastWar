@@ -88,157 +88,35 @@
         }
       
     </style>
-        
+    <script defer src="./js/common.js" type="text/javascript"></script>
+    <script defer src="./js/seasonal.jp" type="test/javascript"></script>
     <script type='text/javascript'>
       <!--
-      function template(strings, ...keys) {
-        return (...values) => {
-          const dict = values[values.length - 1] || {};
-          const result = [strings[0]];
-          keys.forEach((key, i) => {
-            const value = Number.isInteger(key) ? values[key] : dict[key];
-            result.push(value, strings[i + 1]);
-          });
-          return result.join("");
-        };
-      }
+      //WebStorageを確保
+      const storage = LocalStorage;
+      var buildingTemplate = null;
+      const requestURL = "https://raw.githubusercontent.com/ksmage/LastWar/refs/heads/main/Data/Titan.json";
+      const requestTemplateURL = "https://raw.githubusercontent.com/ksmage/LastWar/refs/heads/main/Data/SeasonalBuilding1Template.json";
 
-      let headerClosure = template`<td class="${0} head">${1}</td>`
-      let dataClosure = template`<td class="${0} tableCell">${1}</td>`
-
-      function createTd(data, colNum, type, isResource){
-        let td = document.createElement("td");
-        td.classList.add("c" + colNum.toString().padStart(2,'0'));
-        td.classList.add("tableCell");
-
-        if (type === "numeric"){
-          td.dataset.type = "numeric";
-          td.dataset.value = data;
-          td.classList.add("data");
-          if(isResource){
-            td.dataset.target = "resource";
-          }
-        }else if (type === "checkbox"){
-          let checkBox = document.createElement("input");
-          checkBox.setAttribute("type", "checkbox");
-          td.classList.add("data");
-          td.appendChild(checkBox);
-        }else {
-          td.innerText = data;
-        }
-        return td;
-      }
-
-      function CreateTableElement(obj,type){
-        let parentElement = document.getElementById("titanTableBody")
+      const getTemplate = async(url) => {
         
-        if (type === "header"){
-          let baseElement = document.createElement("tr");
-          for (let i = 0; i < obj.Header.length; i++){
-            let colElement = document.createElement("td");
-            colElement.classList.add("c"+ (i+1).toString().padStart(2,'0'));
-            colElement.classList.add("head");
-            colElement.innerText = obj.Header[i]
-
-            baseElement.appendChild(colElement);
-          }
-          parentElement.appendChild(baseElement);
-        }else if(type === "data"){
-          for (let i = 0; i< obj.Data.length; i++){
-            
-            let rowElement = document.createElement("tr");
-
-            rowElement.appendChild(createTd(obj.Data[i].Level,1));
-            rowElement.appendChild(createTd(obj.Data[i].resource,2,"numeric",true));
-            rowElement.appendChild(createTd(obj.Data[i].power,3,"numeric",false));
-            rowElement.appendChild(createTd(obj.Data[i].output,4,"numeric",false));
-            rowElement.appendChild(createTd(obj.Data[i].no1,5,"checkbox"));
-            rowElement.appendChild(createTd(obj.Data[i].no2,6,"checkbox"));
-            rowElement.appendChild(createTd(obj.Data[i].no3,7,"checkbox"));
-            rowElement.appendChild(createTd(obj.Data[i].no4,8,"checkbox"));
-            rowElement.appendChild(createTd(obj.Data[i].week,9,"checkbox"));
-
-            parentElement.appendChild(rowElement);
-          }
-        }
-
-        
-      }
-
-      async function loadJson(){
-        const requestURL = "https://raw.githubusercontent.com/ksmage/LastWar/refs/heads/main/Data/Titan.json";
-        const request = new Request(requestURL);
+        const request = new Request(url);
 
         const response = await fetch(request);
         const data = await response.json();
 
-        CreateTableElement(data, "header");
-        CreateTableElement(data, "data");
+        storage.setItem(JSON.stringify(data));
+
+        buildingTemplate = data;
+      }
+    
+      document.addEventListener('DOMContentLoaded',async function(){
+        let tableData = await loadJson(requestURL);
+
+        createSeasonalBuildingTable("titanTableBody", tableData, "header");
+        createSeasonalBuildingTable("titanTableBody", tableData, "data");
 
         changeUnit(0,0);
-      }
-
-
-      function createSpan(className,value){
-        let newElement = document.createElement("span")
-        newElement.setAttribute("class",className)
-        newElement.dataset.display= value
-    
-        return newElement
-      }
-    
-      function changeUnit(speedup,valuedown){
-        
-        let dataElement = document.querySelectorAll("td.data")
-        let speedupCounter = 1 + speedup / 100
-        let valuedownCounter = 1 - Math.abs(valuedown) / 100
-    
-        for(let i=0;i < dataElement.length; i++){
-          let element = dataElement[i]
-          if(element.dataset.type === 'numeric' && element.classList.contains("unitChange")){
-            let value = element.dataset.value.replaceAll(',','')
-    
-            if (element.dataset.target === 'resource'){
-              value = Math.ceil(value * valuedownCounter)
-            }
-    
-            let dataSpan = null
-            let unitSpan = null
-            if (value >= 1000000000){
-              dataSpan = createSpan("data",(value/1000000000).toFixed(1))
-              unitSpan = createSpan("unit","G")
-            } 
-            else if (value >= 1000000) {
-              dataSpan = createSpan("data",(value/1000000).toFixed(1))
-              unitSpan = createSpan("unit","M")
-            }
-            else if (value >= 1000) {
-              dataSpan = createSpan("data",(value/1000).toFixed(1))
-              unitSpan = createSpan("unit","K")
-            }
-            else {
-              dataSpan = createSpan("data",value)
-              unitSpan = createSpan("unit"," ")
-            }
-    
-            element.appendChild(dataSpan)
-            element.appendChild(unitSpan)
-          }else if(element.dataset.type === 'numeric'){
-            let value = element.dataset.value.replaceAll(',','')
-    
-            if (element.dataset.target === 'resources'){
-              value = Math.ceil(value * valuedownCounter)
-            }
-
-            let dataSpan = createSpan("data",value)
-            element.appendChild(dataSpan)
-          }
-        }
-      }
-    
-      document.addEventListener('DOMContentLoaded',function(){
-        loadJson();
-        
         
       });
     
