@@ -1,0 +1,54 @@
+span.unit{
+  display:inline-block;
+  min-width: 10px;
+  margin-left: 5px;
+}
+
+tr{
+  .c1{
+    background: rgb(251, 226, 213);
+    font-weight: 700;
+    padding-left: 3px;
+    padding-right:3px;
+  }
+
+  .head{
+    background: rgb(193, 240, 200);
+    border-top: 1px solid rgb(0, 0, 0);
+    border-left: 1px solid rgb(0, 0, 0);
+    border-right: 1px solid rgb(0, 0, 0);
+    border-bottom: 3px double rgb(0, 0, 0);
+    height: 22px;
+    font-size: 16px;
+    font-weight:700;
+    text-align: center;
+  }
+
+  .tableCell{
+    font-size: 11px;
+    height: 18.75px;
+    border: 1px solid rgb(0, 0, 0);
+    text-align: right;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+  }
+
+  .data{
+    color: #313131;
+    vertical-align: bottom;
+
+    &[data-type="numeric"]{
+      text-align: right;
+      
+      > span.data::before{
+        content: attr(data-display);
+      }
+
+      > span.unit::before{
+        content: attr(data-display);
+      }
+    }
+
+  }
+}
