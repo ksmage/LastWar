@@ -26,7 +26,7 @@ const createSpan = (className,value) => {
   return newElement;
 };
 
-const createTd = (data, colNum, type, isResource) => {
+const createTd = (data, colNum, rowNum, type, isResource) => {
   let td = document.createElement("td");
   td.classList.add("c" + colNum.toString().padStart(2,'0'));
   td.classList.add("tableCell");
@@ -41,8 +41,16 @@ const createTd = (data, colNum, type, isResource) => {
     }
   }else if (type === "checkbox"){
     let checkBox = document.createElement("input");
+    let label = document.createElement("label");
+    let checkBoxId = "r" + rowNum.toString().padStart(2,'0') + "c" + colNum.toString().padStart(2,'0');
+
+    label.setAttribute("for", checkBoxId);
+    label.innerText="Lv" + rowNum.toString().padStart(2,'0') + "No" + colNum.toString().padStart(2,'0');
+    label.hidden = true;
+    td.appendChild(label);
     
     checkBox.setAttribute("type", "checkbox");
+    checkBox.setAttribute("id", checkBoxId);
     td.classList.add("data");
     td.appendChild(checkBox);
   }else {

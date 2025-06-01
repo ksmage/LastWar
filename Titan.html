@@ -1,5 +1,6 @@
-<html>
+<html lang="ja-JP">
   <head>
+    <title>資源１</title>
     <link rel="stylesheet" type="text/css" href="./CSS/TableCommon.css"/>
   </head>
   <body>
@@ -58,18 +59,20 @@
         createSeasonalBuildingTable("titanTableBody", tableData, "header");
         createSeasonalBuildingTable("titanTableBody", tableData, "data");
 
+        document.querySelectorAll('input[type=checkbox]').forEach((element) => {createCheckboxListener(element)});
+
         changeUnit(0,0);
         
       });
     
-      // document.getElementById('applyButton').addEventListener('click',function(){
-      //   //let speedup = document.getElementById('speedup').value
-      //   //let valueDown = document.getElementById('valuedown').value
+      document.getElementById('applyButton').addEventListener('click',function(){
+        let speedUp = document.getElementById('speedup').value
+        let valueDown = document.getElementById('valuedown').value
     
-      //   let sppedUp = 0
-      //   let valueDown = 0
-      //   changeUnit(speedUp, valueDown)
-      // })
+        // let sppedUp = 0
+        // let valueDown = 0
+        changeUnit(speedUp, valueDown)
+      })
       -->
     </script>
   </body>
