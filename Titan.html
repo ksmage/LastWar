@@ -1,10 +1,14 @@
 <html lang="ja-JP">
   <head>
     <title>資源１</title>
+    <link rel="stylesheet" type="text/css" href="./CSS/Common.css"/>
     <link rel="stylesheet" type="text/css" href="./CSS/TableCommon.css"/>
   </head>
   <body>
-    <span id="Input">
+    <div id="Header">
+      <Header>ラストウォー 【DIYA】情報局</Header>
+    </div>
+    <div id="Input">
       <p>
         <div>建造バフの適用</div>
         <div style="margin-left:10px;">以下に基地内の本部でわかるバフを入力すると、現在の状態での資源及び建造時間が計算されます。</div>
@@ -14,13 +18,13 @@
         <button name="clear" id="clearButton">初期化</button></div>
           
       </p>
-    </span>
-    <span id="List">
+    </div>
+    <div id="List">
       <table id="titanTable" cellspacing="0" style="border-collapse: collapse;">
         <tbody id="titanTableBody">
         </tbody>
       </table>
-    </span>
+    </div>
     <style>
       tr{
         .c1{width: 35px;}
