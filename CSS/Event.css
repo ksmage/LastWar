@@ -34,25 +34,122 @@
   height:24px;
   line-height:24px;
   text-align: center;
-  margin-left:auto;
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .Conductor{
-  width:214;
-  height:90;
+  background-color: white;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 5px;
+  
+  width:214px;
+  height:75px;
+
+  .Title1{
+    display:inline-block;
+    font-size: 10px;
+    width: 100%;
+    border-color: black;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-top:1px solid;
+    border-bottom: 1px solid;
+    text-align: center;
+  }
+
+  .ConName{
+    display:inline-block;
+    font-size: 14px;
+    padding-left: 2px;
+    padding-right: 2px;
+    width: 100%;
+    border-color: black;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+  }
+
+  .StartTime{
+    display:inline-block;
+    font-size: 10px;
+    width: 100%;
+    text-align: center;
+    border-color: black;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+  }
+
+  .Start{
+    display:inline-block;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    border-color: black;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+  }
+}
+
+.LongMark{
+  font-size: 12px;
+  width: 150px;
+  height: 35px;
+  border: 1px solid black;
+  margin-left:2px;
+  margin-right:2px;
+  margin-bottom:3px;
+  padding-left:2px;
+  padding-right:2px;
+  background-color: white;
+
+  .LongMarkTitle{
+    float:left;
+    height: 100%;
+    width: 55%;
+
+    div{
+      display:inline-block;
+      font-size: 16px;
+      font-weight: 500;
+      height: 35px;
+      line-height: 35px;
+      width: 100%;
+      margin-top: auto;
+      margin-bottom: auto;
+      text-wrap-mode:nowrap;
+    }
+  }
+
+  .LongMarkTime{
+    float: left;
+    width: 65px;
+    margin-left: 2px;
+
+    div{
+      height: 50%;
+      text-wrap-mode:nowrap;
+    }
+  }
 }
 
 .FirstBlock{
   width: 80px;
   padding-left:5px;
   padding-top: 5px;
+  flex-wrap: wrap;
 }
 
 .SecondBlock{
+  padding-top:5px;
   width: 215px;
 }
 
 .ThirdBlock{
   display: inline-block;
+  padding-top:5px;
+  width: 160px;
 }
